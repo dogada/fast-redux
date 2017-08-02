@@ -18,9 +18,10 @@ npm install --save fast-redux
 The Redux source code is written in ES2015 but we precompile both CommonJS and UMD builds to ES5 so they work in [any modern browser](http://caniuse.com/#feat=es5).
 
 
-You can use Edux together with [React](https://facebook.github.io/react/), or with any other view library.  
+You can use fast-redux together with [React](https://facebook.github.io/react/), or with any other view library.  
 It is tiny (1kB, including dependencies).
 
+fast-redux is simpler and IMO better version [Edux](https://github.com/dogada/edux) (my first attempt to make Redux more developer friendly).
 
 ### License
 
