@@ -1,4 +1,4 @@
-# fast-redux - O(1) speed and dynamic importing of actions/reducersRE
+# fast-redux - O(1) speed and dynamic importing of actions/reducers
 
 Fully compatible with Redux but works with O(1) speed when Redux itself works with O(N) speed (N is number of reducers). You can use standard Redux devtools with fast-redux actions.
 
