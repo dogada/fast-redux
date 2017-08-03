@@ -1,4 +1,4 @@
-const PREFIX = '@@edux'
+const PREFIX = '@@fast-redux'
 const DEFAULT_STATE = {}
 
 export const namespaceActionCreator = (ns) => (name, reducer) => {
