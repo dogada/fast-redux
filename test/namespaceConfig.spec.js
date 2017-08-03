@@ -1,12 +1,10 @@
-/* global describe, expect, it, beforeEach */
+/* global describe, expect, it */
 
-import { bindActionCreators, createStore } from 'redux'
-import { namespaceConfig, rootReducer } from '../src'
+import { namespaceConfig } from '../src'
 
 const INITIAL = { todos: [] }
 
 describe('namespaceConfig', () => {
-
   it('returns namespace id NS passed as argument', () => {
     const { NS } = namespaceConfig('my', INITIAL)
     expect(NS).toBe('my')

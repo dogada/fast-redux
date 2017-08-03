@@ -1,4 +1,4 @@
-/* global describe, expect, it, beforeEach */
+/* global describe, expect, it */
 
 import { namespaceConfig } from '../src'
 
@@ -33,6 +33,5 @@ describe('actionCreator', () => {
       payload: [2]
     })
   })
-
 })
 
