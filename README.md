@@ -8,7 +8,7 @@ you may observe performance issues. fast-redux solves this problem by using acti
 one reducer and you don't need to use constants for action types to match actions with reducers. You may see such fast-redux actions using well-known Redux DevTools and use
 its time traveling capabilities. 
 
-Plays well with code splitting. You can dynamically import and  actions/reducers to the store during lifetime of the applications.
+Plays well with code splitting. You can dynamically import actions/reducers to the store during lifetime of the applications.
 
 Don't repeat yourself. Constants for action types aren't need (say goodbye to `switch` statements as well).
 
