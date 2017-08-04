@@ -1,6 +1,6 @@
 {
   "name": "fast-redux",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "DRY version of Redux with O(1) speed and dynamic actions/reducers importing.",
   "browser": "dist/fast-redux.js",
   "main": "lib/index.js",
@@ -58,7 +58,7 @@
       "lib/"
     ]
   },
-  "dependencies": {}, 
+  "dependencies": {},
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0",
     "redux": "^2.0.0 || ^3.0.0"
