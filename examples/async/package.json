@@ -7,7 +7,7 @@
     "react-scripts": "^0.6.0",
     "redux-logger": "^2.6.1"
   },
-  "homepage": "https://dogada.github.io/edux",
+  "homepage": "https://dogada.github.io/fast-redux",
   "dependencies": {
     "fast-redux": "latest",
     "react": "~15.6.1",
