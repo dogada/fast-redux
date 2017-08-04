@@ -9,11 +9,13 @@
   },
   "homepage": "https://dogada.github.io/edux",
   "dependencies": {
-    "edux": "~0.2.2",
+    "fast-redux": "latest",
     "react": "~15.6.1",
     "react-dom": "~15.6.1",
     "react-redux": "~4.4.8",
-    "redux": "~3.7.2"
+    "redux": "~3.7.2",
+    "redux-devtools-extension": "~2.13.2",
+    "redux-thunk": "~2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

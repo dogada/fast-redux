@@ -1,6 +1,9 @@
-import { actionCreator } from 'edux'
+import { namespaceConfig } from 'fast-redux'
 
-export const DEFAULT_STATE = {}
+const DEFAULT_STATE = {}
+
+const { actionCreator, getState: getPostsByReddit } = namespaceConfig('postsByReddit', DEFAULT_STATE)
+export { getPostsByReddit }
 
 const defaultRedditState = {
   isFetching: false,
@@ -8,7 +11,7 @@ const defaultRedditState = {
   items: []
 }
 
-function updateReddit (state, id, data) {
+function updateReddit(state, id, data) {
   const reddit = state[id] || defaultRedditState
   return {
     ...state,
@@ -16,32 +19,32 @@ function updateReddit (state, id, data) {
   }
 }
 
-export function invalidateReddit (state, id) {
+export const invalidateReddit = actionCreator(function invalidateReddit(state, id) {
   return updateReddit(state, id, { didInvalidate: true })
-}
+})
 
-export function requestPosts (state, id) {
+export const requestPosts = actionCreator(function requestPosts(state, id) {
   return updateReddit(state, id, {
     items: [],
     isFetching: true,
     didInvalidate: false
   })
-}
+})
 
-export function receivePosts (state, id, json) {
+export const receivePosts = actionCreator(function receivePosts(state, id, json) {
   return updateReddit(state, id, {
     isFetching: false,
     didInvalidate: false,
     items: json.data.children.map(child => child.data),
     lastUpdated: Date.now()
   })
-}
+})
 
 export const fetchPosts = (reddit) => (dispatch) => {
-  dispatch(actionCreator(requestPosts)(reddit))
+  dispatch(requestPosts(reddit))
   window.fetch(`https://www.reddit.com/r/${reddit}.json`)
     .then(response => response.json())
-    .then(json => dispatch(actionCreator(receivePosts)(reddit, json)))
+    .then(json => dispatch(receivePosts(reddit, json)))
 }
 
 const shouldFetchPosts = (posts) => {
@@ -54,9 +57,10 @@ const shouldFetchPosts = (posts) => {
   return posts.didInvalidate
 }
 
-export const fetchPostsIfNeeded = (state, reddit) => {
-  // removed global (state.postsByReddit) used in action !!!
+export const fetchPostsIfNeed = (reddit) => (dispatch, getState) => {
+  const state = getPostsByReddit(getState())
   if (shouldFetchPosts(state[reddit])) {
-    return fetchPosts(reddit)
+    return dispatch(fetchPosts(reddit))
   }
 }
+

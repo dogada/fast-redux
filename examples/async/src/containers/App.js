@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from '../actions'
+import { selectReddit, fetchPostsIfNeed, invalidateReddit, getPostsByReddit, getSelectedReddit } from '../store'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 
@@ -14,15 +14,15 @@ class App extends Component {
     dispatch: PropTypes.func.isRequired
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const { dispatch, selectedReddit } = this.props
-    dispatch(fetchPostsIfNeeded(selectedReddit))
+    dispatch(fetchPostsIfNeed(selectedReddit))
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (nextProps.selectedReddit !== this.props.selectedReddit) {
       const { dispatch, selectedReddit } = nextProps
-      dispatch(fetchPostsIfNeeded(selectedReddit))
+      dispatch(fetchPostsIfNeed(selectedReddit))
     }
   }
 
@@ -35,17 +35,17 @@ class App extends Component {
 
     const { dispatch, selectedReddit } = this.props
     dispatch(invalidateReddit(selectedReddit))
-    dispatch(fetchPostsIfNeeded(selectedReddit))
+    dispatch(fetchPostsIfNeed(selectedReddit))
   }
 
-  render() {
+  render () {
     const { selectedReddit, posts, isFetching, lastUpdated } = this.props
     const isEmpty = posts.length === 0
     return (
       <div>
         <Picker value={selectedReddit}
-                onChange={this.handleChange}
-                options={[ 'reactjs', 'frontend' ]} />
+          onChange={this.handleChange}
+          options={['reactjs', 'frontend']} />
         <p>
           {lastUpdated &&
             <span>
@@ -54,8 +54,8 @@ class App extends Component {
             </span>
           }
           {!isFetching &&
-            <a href="#"
-               onClick={this.handleRefreshClick}>
+            <a href='#'
+              onClick={this.handleRefreshClick}>
               Refresh
             </a>
           }
@@ -63,8 +63,8 @@ class App extends Component {
         {isEmpty
           ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
           : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-              <Posts posts={posts} />
-            </div>
+            <Posts posts={posts} />
+          </div>
         }
       </div>
     )
@@ -72,7 +72,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  const { selectedReddit, postsByReddit } = state
+  const selectedReddit = getSelectedReddit(state)
+  const postsByReddit = getPostsByReddit(state)
   const {
     isFetching,
     lastUpdated,
