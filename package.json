@@ -58,7 +58,11 @@
       "lib/"
     ]
   },
-  "dependencies": {},
+  "dependencies": {}, 
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0",
+    "redux": "^2.0.0 || ^3.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/dogada/fast-redux.git"

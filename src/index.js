@@ -1,7 +1,7 @@
 const PREFIX = '@@fast-redux'
 const DEFAULT_STATE = {}
 
-export const namespaceActionCreator = (ns) => (name, reducer) => {
+export const namespaceActionCreator = (ns, defaultState) => (name, reducer) => {
   if (!reducer) {
     // first arg name is optional
     reducer = name
@@ -12,7 +12,8 @@ export const namespaceActionCreator = (ns) => (name, reducer) => {
     ns,
     reducer,
     type: `${PREFIX}/${ns}/${name}`,
-    payload: args
+    payload: args,
+    defaultState
   })
 }
 
@@ -34,7 +35,7 @@ export function rootReducer (state, action) {
       action.type && action.type.indexOf(PREFIX) === 0) {
     // handle fast-redux action
     let ns = action.ns
-    let nsState = state[ns]
+    let nsState = ns in state ? state[ns] : action.defaultState
     let newNsState = action.reducer(nsState, ...action.payload)
     if (newNsState === nsState) return state // nothing changed
     return {...state, [ns]: newNsState}
@@ -47,7 +48,7 @@ export function namespaceConfig (ns, defaultState) {
   return {
     NS: ns,
     DEFAULT_STATE: defaultState,
-    actionCreator: namespaceActionCreator(ns),
+    actionCreator: namespaceActionCreator(ns, defaultState),
     getState: namespaceGetState(ns, defaultState)
   }
 }

@@ -29,8 +29,17 @@ describe('namespaceConfig', () => {
       ns: 'my',
       reducer: addReducer,
       type: '@@fast-redux/my/addReducer',
-      payload: [2]
+      payload: [2],
+      defaultState: 0
     })
+
+    expect(Object.keys(addAction)).toEqual([
+      'ns',
+      'reducer',
+      'type',
+      'payload',
+      'defaultState'
+    ])
   })
 })
 
