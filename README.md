@@ -6,7 +6,7 @@ When you dispatch an action, Redux invokes all reducers and passes the state and
 Usually it's not a problem but in complex applications when you have hundreds of reducers and will dispatch an action for every `onChange` of an input field in a form, 
 you may observe performance issues. fast-redux solves this problem by using actions bound directly to reducers. Using this approach, for every action is executed exactly 
 one reducer and you don't need to use constants for action types to match actions with reducers. You may see such fast-redux actions using well-known Redux DevTools and use
-its time traveling capabilities. 
+its time traveling capabilities. [More about performance issues](https://github.com/dogada/fast-redux/issues/1#issuecomment-320465448) that fast-redux aims to solve.
 
 Plays well with code splitting. You can dynamically import actions/reducers to the store during lifetime of the applications.
 
