@@ -1,6 +1,4 @@
-import React from 'react'
-import Link from 'next/link'
+import {reduxPage} from '../config/redux'
+import Homepage from '../containers/homepage'
 
-export default () => (
-  <div>Hello World. <Link href='/about'><a>About</a></Link></div>
-)
+export default reduxPage(Homepage)

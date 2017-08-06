@@ -1,5 +1,4 @@
-import React from 'react'
+import {reduxPage} from '../config/redux'
+import About from '../containers/about'
 
-export default () => (
-  <div>About us</div>
-)
+export default reduxPage(About)
