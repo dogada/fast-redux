@@ -1,0 +1,19 @@
+{
+  "name": "nextjs-preact-code-splitting",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "module-alias": "^2.0.0",
+    "next": "2.4.x",
+    "preact": "^8.2.1",
+    "preact-compat": "^3.17.0",
+    "react": "~15.6.1",
+    "react-dom": "~15.6.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
