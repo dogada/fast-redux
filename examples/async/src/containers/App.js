@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { selectReddit, fetchPostsIfNeed, invalidateReddit, getPostsByReddit, getSelectedReddit } from '../store'
+import { selectReddit, fetchPostsIfNeed, invalidateReddit, getPostsByReddit, getSelectedReddit } from '../actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 
