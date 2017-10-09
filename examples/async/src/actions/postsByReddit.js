@@ -33,7 +33,6 @@ const shouldFetchPosts = (posts) => {
 
 export const fetchPostsIfNeed = (reddit) => (dispatch, getState) => {
   const state = getRedditState(getState(), reddit)
-  console.log('fetchIfNeed', reddit, state)
   if (shouldFetchPosts(state)) {
     return dispatch(fetchPosts(reddit))
   }

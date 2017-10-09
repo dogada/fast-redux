@@ -29,6 +29,31 @@ It is tiny (1kB, including dependencies).
 
 fast-redux is simpler and IMO better version of [Edux](https://github.com/dogada/edux) (my first attempt to make Redux more developer friendly).
 
+### Example
+```
+// reducers.js
+
+export const DEFAULT_STATE = 'reactjs'
+
+export function selectReddit (state, reddit) {
+  return reddit
+}
+
+
+// actions.js
+
+import { namespaceConfig } from 'fast-redux'
+import * as reducers from '../reducers/selectedReddit'
+
+const { actionCreator, getState: getSelectedReddit } = namespaceConfig(
+  'selectedReddit', reducers.DEFAULT_STATE)
+
+export { getSelectedReddit }
+export const selectReddit = actionCreator(reducers.selectReddit)
+```
+
+Please look at `examples` directory for more complex use cases.
+
 ### License
 
 MIT

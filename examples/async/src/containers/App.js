@@ -17,12 +17,12 @@ class App extends Component {
     dispatch: PropTypes.func.isRequired
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const { dispatch, selectedReddit } = this.props
     dispatch(fetchPostsIfNeed(selectedReddit))
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (nextProps.selectedReddit !== this.props.selectedReddit) {
       const { dispatch, selectedReddit } = nextProps
       dispatch(fetchPostsIfNeed(selectedReddit))
@@ -41,7 +41,7 @@ class App extends Component {
     dispatch(fetchPostsIfNeed(selectedReddit))
   }
 
-  render() {
+  render () {
     const { selectedReddit, posts, isFetching, lastUpdated } = this.props
     const isEmpty = posts.length === 0
     return (
