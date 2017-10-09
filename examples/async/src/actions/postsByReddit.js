@@ -1,14 +1,18 @@
-import { namespaceConfig } from 'fast-redux'
+import { namespaceConfig, nestedConfig } from 'fast-redux'
 import * as reducers from '../reducers/postsByReddit'
+import * as redditReducers from '../reducers/reddit'
 
-const { actionCreator, getState: getPostsByReddit } = namespaceConfig('postsByReddit', reducers.DEFAULT_STATE)
-export { getPostsByReddit }
+const { actionCreator, getState } = namespaceConfig(
+  'postsByReddit', reducers.DEFAULT_STATE)
+const { nestedActionCreator, getNestedState: getRedditState } = nestedConfig(
+  actionCreator, getState, redditReducers.DEFAULT_STATE)
+export { getRedditState }
 
-export const invalidateReddit = actionCreator(reducers.invalidateReddit)
+export const invalidateReddit = nestedActionCreator(redditReducers.invalidateReddit)
 
-export const requestPosts = actionCreator(reducers.requestPosts)
+export const requestPosts = nestedActionCreator(redditReducers.requestPosts)
 
-export const receivePosts = actionCreator(reducers.receivePosts)
+export const receivePosts = nestedActionCreator(redditReducers.receivePosts)
 
 export const fetchPosts = (reddit) => (dispatch) => {
   dispatch(requestPosts(reddit))
@@ -18,7 +22,7 @@ export const fetchPosts = (reddit) => (dispatch) => {
 }
 
 const shouldFetchPosts = (posts) => {
-  if (!posts) {
+  if (!posts.items || posts.items.length === 0) {
     return true
   }
   if (posts.isFetching) {
@@ -28,8 +32,9 @@ const shouldFetchPosts = (posts) => {
 }
 
 export const fetchPostsIfNeed = (reddit) => (dispatch, getState) => {
-  const state = getPostsByReddit(getState())
-  if (shouldFetchPosts(state[reddit])) {
+  const state = getRedditState(getState(), reddit)
+  console.log('fetchIfNeed', reddit, state)
+  if (shouldFetchPosts(state)) {
     return dispatch(fetchPosts(reddit))
   }
 }

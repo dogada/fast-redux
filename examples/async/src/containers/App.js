@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { selectReddit, fetchPostsIfNeed, invalidateReddit, getPostsByReddit, getSelectedReddit } from '../actions'
+import {
+  selectReddit, fetchPostsIfNeed, invalidateReddit,
+  getSelectedReddit, getRedditState
+} from '../actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 
@@ -14,12 +17,12 @@ class App extends Component {
     dispatch: PropTypes.func.isRequired
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch, selectedReddit } = this.props
     dispatch(fetchPostsIfNeed(selectedReddit))
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.selectedReddit !== this.props.selectedReddit) {
       const { dispatch, selectedReddit } = nextProps
       dispatch(fetchPostsIfNeed(selectedReddit))
@@ -38,7 +41,7 @@ class App extends Component {
     dispatch(fetchPostsIfNeed(selectedReddit))
   }
 
-  render () {
+  render() {
     const { selectedReddit, posts, isFetching, lastUpdated } = this.props
     const isEmpty = posts.length === 0
     return (
@@ -73,15 +76,11 @@ class App extends Component {
 
 const mapStateToProps = state => {
   const selectedReddit = getSelectedReddit(state)
-  const postsByReddit = getPostsByReddit(state)
   const {
     isFetching,
     lastUpdated,
     items: posts
-  } = postsByReddit[selectedReddit] || {
-    isFetching: true,
-    items: []
-  }
+  } = getRedditState(state, selectedReddit)
 
   return {
     selectedReddit,
