@@ -50,27 +50,3 @@ export function namespaceConfig (ns, defaultState) {
     getState: namespaceGetState(ns, defaultState)
   }
 }
-
-const nestedActionCreator = (actionCreator, defaultNestedState) => (reducer, name) => {
-  if (typeof reducer !== 'function') throw new Error('Reducer must be a function.')
-  return actionCreator(
-    name || reducer.name,
-    (state = {}, nestedKey, ...args) => {
-      let nestedState = state[nestedKey] || defaultNestedState
-      return {
-        ...state,
-        [nestedKey]: reducer(nestedState, ...args)
-      }
-    })
-}
-
-const nestedGetState = (getParentState, defaultNestedState) => (state, key) => {
-  return getParentState(state)[key] || defaultNestedState
-}
-
-export function nestedConfig (parentActionCreator, getParentState, defaultNestedState) {
-  return {
-    nestedActionCreator: nestedActionCreator(parentActionCreator, defaultNestedState),
-    getNestedState: nestedGetState(getParentState, defaultNestedState)
-  }
-}
