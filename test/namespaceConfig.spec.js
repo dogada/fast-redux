@@ -28,7 +28,7 @@ describe('namespaceConfig', () => {
     expect(addAction).toEqual({
       ns: 'my',
       reducer: addReducer,
-      type: '@@fast-redux/my/addReducer',
+      type: 'my/addReducer',
       payload: [2],
       defaultState: 0
     })
