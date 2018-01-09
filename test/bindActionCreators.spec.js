@@ -4,13 +4,13 @@ import { bindActionCreators, createStore } from 'redux'
 import { namespaceConfig, rootReducer } from '../src'
 
 const DEFAULT_STATE = []
-const {actionCreator, getState: getTestState} = namespaceConfig('test', DEFAULT_STATE)
+const {action, getState: getTestState} = namespaceConfig('test', DEFAULT_STATE)
 
 function nextId (state) {
   return Math.max(0, ...state.map(todo => todo.id)) + 1
 }
 
-const addTodo = actionCreator(function addTodo (state = DEFAULT_STATE, text) {
+const addTodo = action(function addTodo (state = DEFAULT_STATE, text) {
   return [...state, {id: nextId(state), text}]
 })
 

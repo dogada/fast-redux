@@ -1,6 +1,6 @@
 const DEFAULT_STATE = {}
 
-export const namespaceActionCreator = (ns, defaultState) => (name, reducer) => {
+export const namespaceAction = (ns, defaultState) => (name, reducer) => {
   if (!reducer) {
     // first arg name is optional
     reducer = name
@@ -46,7 +46,7 @@ export function namespaceConfig (ns, defaultState) {
   return {
     NS: ns,
     DEFAULT_STATE: defaultState,
-    actionCreator: namespaceActionCreator(ns, defaultState),
+    action: namespaceAction(ns, defaultState),
     getState: namespaceGetState(ns, defaultState)
   }
 }

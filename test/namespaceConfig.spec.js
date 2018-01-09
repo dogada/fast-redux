@@ -17,11 +17,11 @@ describe('namespaceConfig', () => {
 
   it('returns actionCreator function bound to namespace', () => {
     const DEFAULT_STATE = 0
-    const { actionCreator } = namespaceConfig('my', DEFAULT_STATE)
-    expect(typeof actionCreator).toBe('function')
+    const { action } = namespaceConfig('my', DEFAULT_STATE)
+    expect(typeof action).toBe('function')
 
     let addReducer = (state = DEFAULT_STATE, x) => state + x
-    let add = actionCreator(addReducer)
+    let add = action(addReducer)
     expect(typeof add).toBe('function')
     let addAction = add(2)
 
