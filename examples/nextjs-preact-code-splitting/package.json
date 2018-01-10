@@ -7,7 +7,7 @@
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "fast-redux": "~0.3.0",
+    "fast-redux": "latest",
     "module-alias": "^2.0.0",
     "next": "~3.0.1-beta.20",
     "next-redux-wrapper": "~1.3.2",
