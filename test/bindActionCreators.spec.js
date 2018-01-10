@@ -20,7 +20,7 @@ function addTodoAsync (text) {
   }, 1000)
 }
 
-const actionCreators = {addTodo, addTodoAsync}
+const actions = {addTodo, addTodoAsync}
 
 function cloneOnlyFunctions (obj) {
   let clone = { ...obj }
@@ -37,24 +37,24 @@ function initStore () {
 }
 
 describe('bindActionCreators', () => {
-  let store, actionCreatorFunctions
+  let store, actionFunctions
 
   beforeEach(() => {
     store = initStore()
-    actionCreatorFunctions = cloneOnlyFunctions(actionCreators)
+    actionFunctions = cloneOnlyFunctions(actions)
   })
 
   it('wraps the action creators with the dispatch function', () => {
-    const boundActionCreators = bindActionCreators(actionCreators, store.dispatch)
+    const boundActionCreators = bindActionCreators(actions, store.dispatch)
     expect(
       Object.keys(boundActionCreators)
     ).toEqual(
-      Object.keys(actionCreatorFunctions)
+      Object.keys(actionFunctions)
     )
 
     const action = boundActionCreators.addTodo('Hello')
     expect(action).toEqual(
-      actionCreators.addTodo('Hello')
+      actions.addTodo('Hello')
     )
     expect(getTestState(store.getState())).toEqual([
       { id: 1, text: 'Hello' }
@@ -63,7 +63,7 @@ describe('bindActionCreators', () => {
 
   it('skips non-function values in the passed object', () => {
     const boundActionCreators = bindActionCreators({
-      ...actionCreators,
+      ...actions,
       foo: 42,
       bar: 'baz',
       wow: undefined,
@@ -73,16 +73,16 @@ describe('bindActionCreators', () => {
     expect(
       Object.keys(boundActionCreators)
     ).toEqual(
-      Object.keys(actionCreatorFunctions)
+      Object.keys(actionFunctions)
     )
   })
 
   it('supports wrapping a single function only', () => {
-    const actionCreator = actionCreators.addTodo
-    const boundActionCreator = bindActionCreators(actionCreator, store.dispatch)
+    const action = actions.addTodo
+    const boundActionCreator = bindActionCreators(action, store.dispatch)
 
-    const action = boundActionCreator('Hello')
-    expect(action).toEqual(actionCreator('Hello'))
+    const descriptor = boundActionCreator('Hello')
+    expect(descriptor).toEqual(action('Hello'))
     expect(getTestState(store.getState())).toEqual([
       { id: 1, text: 'Hello' }
     ])

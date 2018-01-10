@@ -15,7 +15,7 @@ describe('namespaceConfig', () => {
     expect(DEFAULT_STATE).toBe(INITIAL)
   })
 
-  it('returns actionCreator function bound to namespace', () => {
+  it('returns action function bound to namespace', () => {
     const DEFAULT_STATE = 0
     const { action } = namespaceConfig('my', DEFAULT_STATE)
     expect(typeof action).toBe('function')

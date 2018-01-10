@@ -45,11 +45,11 @@ export function selectReddit (state, reddit) {
 import { namespaceConfig } from 'fast-redux'
 import * as reducers from '../reducers/selectedReddit'
 
-const { actionCreator, getState: getSelectedReddit } = namespaceConfig(
+const { action, getState: getSelectedReddit } = namespaceConfig(
   'selectedReddit', reducers.DEFAULT_STATE)
 
 export { getSelectedReddit }
-export const selectReddit = actionCreator(reducers.selectReddit)
+export const selectReddit = action(reducers.selectReddit)
 ```
 
 Please look at `examples` directory for more complex use cases.

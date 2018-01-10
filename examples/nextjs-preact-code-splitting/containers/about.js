@@ -6,9 +6,9 @@ import Link from 'next/link'
 
 const DEFAULT_STATE = {version: 1}
 
-const {actionCreator, getState: getAboutState} = namespaceConfig('about', DEFAULT_STATE)
+const {action, getState: getAboutState} = namespaceConfig('about', DEFAULT_STATE)
 
-const bumpVersion = actionCreator(function bumpVersion (state, increment) {
+const bumpVersion = action(function bumpVersion (state, increment) {
   return {...state, version: state.version + increment}
 })
 

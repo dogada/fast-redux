@@ -6,9 +6,9 @@ import Link from 'next/link'
 
 const DEFAULT_STATE = {build: 1}
 
-const {actionCreator, getState: getHomepageState} = namespaceConfig('homepage', DEFAULT_STATE)
+const {action, getState: getHomepageState} = namespaceConfig('homepage', DEFAULT_STATE)
 
-const bumpBuild = actionCreator(function bumpBuild (state, increment) {
+const bumpBuild = action(function bumpBuild (state, increment) {
   return {...state, build: state.build + increment}
 })
 

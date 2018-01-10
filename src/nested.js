@@ -1,7 +1,7 @@
 /*
   Optional utils for working with nested states.
   For the example of usage please see:
-  examples/async/src/actions/postsByReddit.js#L7
+  examples/async/src/actions/postsByReddit.js
 */
 
 const nestedAction = (action, defaultNestedState) => (reducer, name) => {

@@ -1,18 +1,19 @@
-import { namespaceConfig, nestedConfig } from 'fast-redux'
+import { namespaceConfig } from 'fast-redux'
+import { nestedConfig } from 'fast-redux/nested'
 import * as reducers from '../reducers/postsByReddit'
 import * as redditReducers from '../reducers/reddit'
 
-const { actionCreator, getState } = namespaceConfig(
+const { action, getState } = namespaceConfig(
   'postsByReddit', reducers.DEFAULT_STATE)
-const { nestedActionCreator, getNestedState: getRedditState } = nestedConfig(
-  actionCreator, getState, redditReducers.DEFAULT_STATE)
+const { nestedAction, getNestedState: getRedditState } = nestedConfig(
+  action, getState, redditReducers.DEFAULT_STATE)
 export { getRedditState }
 
-export const invalidateReddit = nestedActionCreator(redditReducers.invalidateReddit)
+export const invalidateReddit = nestedAction(redditReducers.invalidateReddit)
 
-export const requestPosts = nestedActionCreator(redditReducers.requestPosts)
+export const requestPosts = nestedAction(redditReducers.requestPosts)
 
-export const receivePosts = nestedActionCreator(redditReducers.receivePosts)
+export const receivePosts = nestedAction(redditReducers.receivePosts)
 
 export const fetchPosts = (reddit) => (dispatch) => {
   dispatch(requestPosts(reddit))
