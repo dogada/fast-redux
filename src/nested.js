@@ -1,7 +1,10 @@
 /*
+  @deprecated Use propAction from namespaceConfig instead
+  Will be removed in next release.
   Optional utils for working with nested states.
   For the example of usage please see:
   examples/async/src/actions/postsByReddit.js
+
 */
 
 const nestedAction = (action, defaultNestedState) => (reducer, name) => {
