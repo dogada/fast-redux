@@ -1,6 +1,6 @@
 {
   "name": "fast-redux",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "DRY version of Redux with O(1) speed and dynamic actions/reducers importing.",
   "browser": "dist/fast-redux.js",
   "main": "lib/index.js",
