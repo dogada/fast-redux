@@ -42,11 +42,40 @@ export function rootReducer (state, action) {
   return state
 }
 
+/**
+ * Return action that accepts a property id, finds its value in state and pass
+ * this value to propertyReducer. If the state isn't an object, error is thrown.
+ * Then it returns new state with new property value.
+ * @param {function} action Action creator from namespaceConfig
+ * @param {string} name Action name
+ * @param {function} propertyReducer Function that returns new value of the
+ * property
+ */
+function statePropertyAction (action, name, propertyReducer) {
+  function reducer (state, id, ...propertyReducerArgs) {
+    if (typeof state !== 'object') {
+      throw new Error('State of object type is required for propAction.')
+    }
+    return {
+      ...state,
+      [id]: propertyReducer(state[id], ...propertyReducerArgs)
+    }
+  }
+  return action(name, reducer)
+}
+
+/**
+ * Return config for the fast redux namespace.
+ * @param {String} ns
+ * @param {*} defaultState
+ */
 export function namespaceConfig (ns, defaultState) {
+  let action = namespaceAction(ns, defaultState)
   return {
     NS: ns,
     DEFAULT_STATE: defaultState,
-    action: namespaceAction(ns, defaultState),
+    action,
+    propAction: statePropertyAction.bind(null, action),
     getState: namespaceGetState(ns, defaultState)
   }
 }
