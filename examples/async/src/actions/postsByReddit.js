@@ -1,5 +1,5 @@
 import { namespaceConfig } from 'fast-redux'
-import { nestedConfig } from 'fast-redux/nested'
+import { nestedConfig } from 'fast-redux/lib/nested'
 import * as reducers from '../reducers/postsByReddit'
 import * as redditReducers from '../reducers/reddit'
 
