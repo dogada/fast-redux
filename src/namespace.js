@@ -1,12 +1,17 @@
-const namespaceAction = (ns, defaultState) => (name, reducer) => {
-  if (typeof reducer !== 'function') throw new Error('Reducer must be a function.')
-  return (...args) => ({
-    ns,
-    reducer,
-    type: `${ns}/${name}`,
-    payload: args,
-    defaultState
-  })
+function namespaceAction (ns, defaultState) {
+  function creator (name, reducer) {
+    if (typeof reducer !== 'function') throw new Error('Reducer must be a function.')
+    return (...args) => ({
+      type: `${ns}/${name}`,
+      payload: args,
+      creator,
+      reducer
+    })
+  }
+  creator.ns = ns
+  creator.defaultState = defaultState
+  creator.getState = (state) => (ns in state ? state[ns] : defaultState)
+  return creator
 }
 
 const getNamespaceState = (ns, defaultState) => (state, ...keys) => {
