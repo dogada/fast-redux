@@ -25,7 +25,7 @@ const makePropertyAction = (action, propertyName) => (name, reducer) => {
  * @param {string} propertyName name of object's property
  * @param {*} defaultPropertyState initial value of a property
  */
-export function propertyConfig (action, propertyName) {
+export function staticPropertyConfig (action, propertyName) {
   const getPropertyState = (state) => action.getState(state)[propertyName]
   return {
     propertyAction: makePropertyAction(action, propertyName),
@@ -58,7 +58,7 @@ const makeObjectAction = (action, defaultPropertyState) => (name, reducer) => {
  * @param {function} getObjectState function to obtain state of parent namespace
  * @param {*} defaultPropertyState initial value of a property
  */
-export function objectConfig (action, defaultPropertyState) {
+export function dynamicPropertyConfig (action, defaultPropertyState) {
   const getPropertyState = (state, key) => action.getState(state)[key] || defaultPropertyState
   return {
     propertyAction: makeObjectAction(action, defaultPropertyState),
