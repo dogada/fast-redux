@@ -31,25 +31,19 @@ fast-redux is simpler and IMO better version of [Edux](https://github.com/dogada
 
 ### Example
 ```
-// reducers.js
+// examples/async/src/stores/selectedReddit.js
 
-export const DEFAULT_STATE = 'reactjs'
+import {namespaceConfig} from 'fast-redux'
 
-export function selectReddit (state, reddit) {
-  return reddit
-}
+const DEFAULT_STATE = 'reactjs'
+export const {
+  action,
+  getState: getSelectedReddit
+} = namespaceConfig('selectedReddit', DEFAULT_STATE)
 
-
-// actions.js
-
-import { namespaceConfig } from 'fast-redux'
-import * as reducers from '../reducers/selectedReddit'
-
-const { action, getState: getSelectedReddit } = namespaceConfig(
-  'selectedReddit', reducers.DEFAULT_STATE)
-
-export { getSelectedReddit }
-export const selectReddit = action(reducers.selectReddit)
+export const selectReddit = action('selectReddit',
+  (state, reddit) => reddit
+)
 ```
 
 Please look at `examples` directory for more complex use cases.
