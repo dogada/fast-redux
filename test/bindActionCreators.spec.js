@@ -10,7 +10,8 @@ function nextId (state) {
   return Math.max(0, ...state.map(todo => todo.id)) + 1
 }
 
-const addTodo = action(function addTodo (state = DEFAULT_STATE, text) {
+const addTodo = action('addTodo',
+function (state = DEFAULT_STATE, text) {
   return [...state, {id: nextId(state), text}]
 })
 

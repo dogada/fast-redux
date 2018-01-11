@@ -5,15 +5,6 @@ import { namespaceConfig } from '../src'
 const INITIAL = { todos: [] }
 
 describe('namespaceConfig', () => {
-  it('returns namespace id NS passed as argument', () => {
-    const { NS } = namespaceConfig('my', INITIAL)
-    expect(NS).toBe('my')
-  })
-
-  it('returns DEFAULT_STATE passed as argument', () => {
-    const { DEFAULT_STATE } = namespaceConfig('my', INITIAL)
-    expect(DEFAULT_STATE).toBe(INITIAL)
-  })
 
   it('returns action function bound to namespace', () => {
     const DEFAULT_STATE = 0
@@ -21,7 +12,7 @@ describe('namespaceConfig', () => {
     expect(typeof action).toBe('function')
 
     let addReducer = (state = DEFAULT_STATE, x) => state + x
-    let add = action(addReducer)
+    let add = action('addReducer', addReducer)
     expect(typeof add).toBe('function')
     let addAction = add(2)
 
