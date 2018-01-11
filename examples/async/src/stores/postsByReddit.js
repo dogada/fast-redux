@@ -1,10 +1,7 @@
 import { namespaceConfig, objectConfig } from 'fast-redux'
 
 const DEFAULT_STATE = {}
-const {
-  action,
-  getState
-} = namespaceConfig('postsByReddit', DEFAULT_STATE)
+const {action} = namespaceConfig('postsByReddit', DEFAULT_STATE)
 
 const DEFAULT_REDDIT_STATE = {
   isFetching: false,
@@ -15,7 +12,7 @@ const DEFAULT_REDDIT_STATE = {
 const {
   propertyAction: redditAction,
   getPropertyState: getRedditState
-} = objectConfig(action, getState, DEFAULT_REDDIT_STATE)
+} = objectConfig(action, DEFAULT_REDDIT_STATE)
 
 export {getRedditState}
 
