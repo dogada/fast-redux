@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'proptypes'
+
 import { connect } from 'react-redux'
 import {
   fetchPostsIfNeed,
@@ -63,7 +65,7 @@ class App extends Component {
             </span>
           }
           {!isFetching &&
-            <a href='#'
+            <a href='./'
               onClick={this.handleRefreshClick}>
               Refresh
             </a>
