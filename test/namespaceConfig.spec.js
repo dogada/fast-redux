@@ -17,19 +17,17 @@ describe('namespaceConfig', () => {
     let addAction = add(2)
 
     expect(addAction).toEqual({
-      ns: 'my',
-      reducer: addReducer,
       type: 'my/addReducer',
       payload: [2],
-      defaultState: 0
+      reducer: addReducer,
+      creator: action
     })
 
     expect(Object.keys(addAction)).toEqual([
-      'ns',
-      'reducer',
       'type',
       'payload',
-      'defaultState'
+      'creator',
+      'reducer'
     ])
   })
 })
