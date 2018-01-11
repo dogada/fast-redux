@@ -1,4 +1,4 @@
-import { namespaceConfig, objectConfig } from 'fast-redux'
+import { namespaceConfig, dynamicPropertyConfig } from 'fast-redux'
 
 const DEFAULT_STATE = {}
 const {action} = namespaceConfig('postsByReddit', DEFAULT_STATE)
@@ -12,7 +12,7 @@ const DEFAULT_REDDIT_STATE = {
 const {
   propertyAction: redditAction,
   getPropertyState: getRedditState
-} = objectConfig(action, DEFAULT_REDDIT_STATE)
+} = dynamicPropertyConfig(action, DEFAULT_REDDIT_STATE)
 
 export {getRedditState}
 
