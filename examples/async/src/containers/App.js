@@ -1,9 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import {
-  selectReddit, fetchPostsIfNeed, invalidateReddit,
-  getSelectedReddit, getRedditState
-} from '../actions'
+  fetchPostsIfNeed,
+  invalidateReddit,
+  getRedditState
+} from '../stores/postsByReddit'
+import {
+  selectReddit,
+  getSelectedReddit
+} from '../stores/selectedReddit'
+
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 

@@ -8,9 +8,9 @@ const DEFAULT_STATE = {build: 1}
 
 const {action, getState: getHomepageState} = namespaceConfig('homepage', DEFAULT_STATE)
 
-const bumpBuild = action(function bumpBuild (state, increment) {
-  return {...state, build: state.build + increment}
-})
+const bumpBuild = action('bumpBuild',
+  (state, increment) => ({...state, build: state.build + increment})
+)
 
 const Homepage = ({ build, bumpBuild }) => (
   <div>

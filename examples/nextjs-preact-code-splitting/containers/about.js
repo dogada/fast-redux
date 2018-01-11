@@ -8,9 +8,10 @@ const DEFAULT_STATE = {version: 1}
 
 const {action, getState: getAboutState} = namespaceConfig('about', DEFAULT_STATE)
 
-const bumpVersion = action(function bumpVersion (state, increment) {
-  return {...state, version: state.version + increment}
-})
+const bumpVersion = action('bumpVersion',
+  (state, increment) => ({...state, version: state.version + increment}
+  )
+)
 
 const About = ({ version, bumpVersion }) => (
   <div>
