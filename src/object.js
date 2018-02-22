@@ -2,7 +2,7 @@
  * Actions for working directly with the properties of an object stored in a
  * state. For example object 'posts' that holds various reddits states.
  * You can find example of usage in:
- * examples/async/src/actions/postsByReddit.js
+ * examples/async/src/stores/postsByReddit.js
  */
 
 const makePropertyAction = (action, propertyName) => (name, reducer) => {
