@@ -48,6 +48,10 @@ export const selectReddit = action('selectReddit',
 
 Please look at `examples` directory for more complex use cases.
 
+You can compare 2 versions of same application: [Redux version](https://github.com/reactjs/redux/tree/master/examples/async) and [FastRedux version](https://github.com/dogada/fast-redux/tree/master/examples/async).
+
+More examples of FastRedux stores you can find in [microchain demo app](https://github.com/dogada/microchain/tree/master/webapp/store).
+
 ### License
 
 MIT
